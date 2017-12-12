@@ -20,6 +20,9 @@ class Application
       cart_item = req.params["c"]
       if @@items.include?(cart_item)
         @@cart << cart_item
+      else
+        resp.write "Path Not Found"
+      end
       # This should take in a get param with the key item
       # check to see if item is in @@items, if so add to cart, otherwise give an error.
     else
