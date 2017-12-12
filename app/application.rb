@@ -1,6 +1,7 @@
 class Application
 
   @@items = ["Apples","Carrots","Pears"]
+  @@cart = []
 
   def call(env)
     resp = Rack::Response.new
@@ -13,6 +14,14 @@ class Application
     elsif req.path.match(/search/)
       search_term = req.params["q"]
       resp.write handle_search(search_term)
+    elsif req.path.match(/cart/)
+      resp.write @@cart.join(" ,")
+    elsif req.path.match(/add/)
+      cart_item = req.params["c"]
+      if @@items.include?(cart_item)
+        @@cart << cart_item
+      # This should take in a get param with the key item
+      # check to see if item is in @@items, if so add to cart, otherwise give an error.
     else
       resp.write "Path Not Found"
     end
