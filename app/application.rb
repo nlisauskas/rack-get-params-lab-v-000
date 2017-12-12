@@ -21,7 +21,7 @@ class Application
       if @@items.include?(cart_item)
         @@cart << cart_item
       else
-        resp.write "Path Not Found"
+        resp.write "We don't have that item"
       end
       # This should take in a get param with the key item
       # check to see if item is in @@items, if so add to cart, otherwise give an error.
